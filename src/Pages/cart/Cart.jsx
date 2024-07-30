@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { ShopContext } from "../context/ShopContext";
-import { products } from "../data/products";
-import CartItem from "../Pages/cart/CartItem";
+import { ShopContext } from "../../context/ShopContext";
+import { products } from "../../products";
+import CartItem from "./CartItem";
 
 export const Cart = () => {
   const { cartItems } = useContext(ShopContext);

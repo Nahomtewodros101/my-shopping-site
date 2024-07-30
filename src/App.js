@@ -1,19 +1,23 @@
 import React from "react";
-import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
-import Cart from "./Components/Cart";
-import ProductDetails from "./Components/ProductDetails"; // Import new component
-import Shop from "./Components/Shop";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Navbar from "./Components/Navbar";
+import Shop from "./Pages/shop/Shop";
+import Cart from "./Pages/cart/Cart";
+import { ShopContextProvider } from './context/ShopContext'; // Corrected import
 
 const App = () => {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Shop />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/product/:id" element={<ProductDetails />} />{" "}
-        {/* New route */}
-      </Routes>
-    </Router>
+    <ShopContextProvider> {/* Corrected component name */}
+      <Router>
+        <div className="App">
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Shop />} />
+            <Route path="/cart" element={<Cart />} />
+          </Routes>
+        </div>
+      </Router>
+    </ShopContextProvider>
   );
 };
 

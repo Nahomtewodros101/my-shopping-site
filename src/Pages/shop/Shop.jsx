@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import React from "react";
-import { products } from "../data/products";
-import Product from "./Product";
+import { products } from "../../products";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -29,8 +28,24 @@ const Shop = () => {
         animate="visible"
       >
         {products.map((product) => (
-          <motion.div key={product.id} variants={itemVariants}>
-            <Product data={product} />
+          <motion.div
+            key={product.id}
+            variants={itemVariants}
+            className="flex flex-col items-center p-4 border rounded shadow-lg"
+          >
+            <img
+              src={product.productImage}
+              alt={product.name}
+              className="w-40 h-40 object-cover mb-4"
+            />
+            <h2 className="text-lg font-semibold mb-2">{product.name}</h2>
+            <p className="text-lg text-gray-600 mb-2">
+              ${product.price.toFixed(2)}
+            </p>
+            <p className="text-gray-700 mb-4">{product.description}</p>
+            <button className="bg-black text-white px-4 py-2 rounded hover:bg-gray-700">
+              Add to Cart
+            </button>
           </motion.div>
         ))}
       </motion.div>
