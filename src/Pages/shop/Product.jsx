@@ -7,7 +7,7 @@ const Product = ({ data }) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(`/product/${id}`); // Navigate to a detailed product page
+    navigate(`/product/${id}`);
   };
 
   return (

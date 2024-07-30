@@ -14,12 +14,12 @@ export const Cart = () => {
     return total + (item ? item.price * cartItems[id] : 0);
   }, 0);
 
-  // Check if the cart is empty
+
   const isCartEmpty = Object.keys(cartItems).length === 0;
 
-  // Navigate to shop page
+
   const handleContinueShopping = () => {
-    navigate('/'); // Navigate to the shop page
+    navigate('/'); 
   };
 
   // Handle checkout button click
