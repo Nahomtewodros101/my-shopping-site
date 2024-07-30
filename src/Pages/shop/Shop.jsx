@@ -19,12 +19,13 @@ const buttonVariants = {
 };
 
 const hoverVariants = {
+  initial: { scale: 1 },
   hover: { scale: 1.05, boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)" },
 };
 
 const infoVariants = {
-  hidden: { opacity: 0, height: 0, overflow: 'hidden' },
-  visible: { opacity: 1, height: 'auto', transition: { duration: 0.3 } },
+  initial: { opacity: 0, height: 0, overflow: 'hidden' },
+  hover: { opacity: 1, height: 'auto', transition: { duration: 0.3 } },
 };
 
 const Shop = () => {
@@ -47,10 +48,10 @@ const Shop = () => {
         {products.map((product) => (
           <motion.div
             key={product.id}
-            variants={itemVariants}
-            className="flex flex-col items-center p-4 border rounded shadow-lg"
+            initial="initial"
             whileHover="hover"
             variants={hoverVariants}
+            className="flex flex-col items-center p-4 border rounded shadow-lg"
           >
             <img
               src={product.productImage}
@@ -59,10 +60,10 @@ const Shop = () => {
             />
             <h2 className="text-lg font-semibold mb-2">{product.name}</h2>
             <motion.div
-              className="overflow-hidden"
               variants={infoVariants}
-              initial="hidden"
-              whileHover="visible"
+              initial="initial"
+              whileHover="hover"
+              className="flex flex-col items-center"
             >
               <p className="text-lg text-gray-600 mb-2">
                 ${product.price.toFixed(2)}
