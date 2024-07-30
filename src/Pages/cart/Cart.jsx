@@ -16,6 +16,11 @@ const descriptionVariants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.3 } },
 };
 
+const hoverTextVariants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { duration: 0.3 } },
+};
+
 const Cart = () => {
   const { cartItems, addToCart, removeFromCart } = useContext(ShopContext);
   const navigate = useNavigate();
@@ -65,7 +70,7 @@ const Cart = () => {
             return (
               <motion.div
                 key={product.id}
-                className="flex flex-col items-center p-4 border rounded shadow-lg"
+                className="relative flex flex-col items-center p-4 border rounded shadow-lg"
                 variants={containerVariants}
                 whileHover="hover"
               >
@@ -86,6 +91,14 @@ const Cart = () => {
                 >
                   {product.description}
                 </motion.p>
+                <motion.span
+                  className="absolute bottom-2 text-sm text-gray-500"
+                  variants={hoverTextVariants}
+                  initial="hidden"
+                  whileHover="visible"
+                >
+                  Hover for details
+                </motion.span>
                 <div className="flex items-center gap-4">
                   <button
                     onClick={() => handleQuantityChange(product.id, cartItems[product.id] - 1)}

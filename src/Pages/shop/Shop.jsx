@@ -60,25 +60,25 @@ const Shop = () => {
             />
             <h2 className="text-lg font-semibold mb-2">{product.name}</h2>
             <motion.div
-              variants={infoVariants}
+              className="flex flex-col items-center"
               initial="hidden"
               whileHover="visible"
-              className="flex flex-col items-center"
+              variants={infoVariants}
             >
               <p className="text-lg text-gray-600 mb-2">
                 ${product.price.toFixed(2)}
               </p>
               <p className="text-gray-700 mb-4">{product.description}</p>
-              <motion.button 
-                className="bg-black text-white px-4 py-2 rounded hover:bg-gray-700"
-                onClick={() => addToCart(product.id)}
-                initial="initial"
-                animate={animationState[product.id] ? "clicked" : "initial"}
-                variants={buttonVariants}
-              >
-                {recentlyAdded[product.id] ? 'Added to Cart' : 'Add to Cart'} {cartItems[product.id] ? `(${cartItems[product.id]})` : ''}
-              </motion.button>
             </motion.div>
+            <motion.button 
+              className="bg-black text-white px-4 py-2 rounded hover:bg-gray-700"
+              onClick={() => addToCart(product.id)}
+              initial="initial"
+              animate={animationState[product.id] ? "clicked" : "initial"}
+              variants={buttonVariants}
+            >
+              {recentlyAdded[product.id] ? 'Added to Cart' : 'Add to Cart'} {cartItems[product.id] ? `(${cartItems[product.id]})` : ''}
+            </motion.button>
           </motion.div>
         ))}
       </motion.div>
