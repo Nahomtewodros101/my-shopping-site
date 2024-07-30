@@ -1,34 +1,30 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useContext } from 'react';
+import { ShopContext } from '../../context/ShopContext';
 
-const Product = ({ data }) => {
-  const { id, name, price, productImage, description } = data;
-  const [isHovered, setIsHovered] = useState(false);
-  const navigate = useNavigate();
+const Product = (props) => {
+  const { id, name, price, productImage, description } = props.data;
+  const { cartItems, addToCart } = useContext(ShopContext);
 
-  const handleClick = () => {
-    navigate(`/product/${id}`);
+  const handleAddToCart = () => {
+    addToCart(id);
   };
 
   return (
-    <div
-      className={`product-card flex flex-col items-center transition-transform transform ${
-        isHovered ? "scale-110" : "scale-100"
-      } rounded-md shadow-md border border-gray-300 p-4`}
-      onClick={handleClick}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
+    <div className="product-card flex flex-col items-center transition-transform transform hover:scale-105 rounded-md shadow-md border border-gray-300 p-4">
       <img
         src={productImage}
         alt={name}
-        className="w-40 h-40 object-cover mb-4 transition-transform duration-300"
+        className="w-40 h-40 object-cover mb-4"
       />
       <h2 className="text-lg font-semibold mb-2 text-center">{name}</h2>
-      <p className="text-gray-600 mb-2 text-center">{description}</p>
-      <p className="text-lg text-gray-600 mb-4 text-center">
-        ${price.toFixed(2)}
-      </p>
+      <p className="text-lg text-gray-600 mb-2 text-center">${price.toFixed(2)}</p>
+      <p className="text-gray-700 mb-4 text-center">{description}</p>
+      <button
+        className="bg-black text-white px-4 py-2 rounded hover:bg-gray-700 transition-transform transform"
+        onClick={handleAddToCart}
+      >
+        Add to Cart {cartItems[id] ? `(${cartItems[id]})` : ''}
+      </button>
     </div>
   );
 };
