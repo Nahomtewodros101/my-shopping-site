@@ -1,5 +1,5 @@
 import React from "react";
-import { motion } from "framer-motion"; // Import framer-motion
+import { motion } from "framer-motion";
 
 const containerVariants = {
   initial: { scale: 1 },
@@ -7,7 +7,7 @@ const containerVariants = {
 };
 
 const infoVariants = {
-  hidden: { opacity: 0, height: 0 },
+  hidden: { opacity: 0, height: 0, overflow: 'hidden' },
   visible: { opacity: 1, height: 'auto', transition: { duration: 0.3 } },
 };
 
