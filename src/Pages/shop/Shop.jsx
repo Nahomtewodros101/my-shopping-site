@@ -2,6 +2,7 @@ import React from 'react';
 import { products } from '../../products';
 import Product from '../Shop/Product';
 
+
 const Shop = () => {
   return (
     <div className='text-center'>

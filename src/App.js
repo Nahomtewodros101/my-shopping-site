@@ -3,7 +3,8 @@ import Navbar from "./Components/Navbar";
 import { ShopContextProvider } from "./context/ShopContext";
 import "./output.css";
 import Cart from "./Pages/cart/Cart";
-import Shop from "./Pages/Shop/Shop";
+import Shop from './Pages/Shop/Shop';
+
 
 function App() {
   return (
