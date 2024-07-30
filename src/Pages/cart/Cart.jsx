@@ -1,6 +1,6 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion } from "framer-motion"; // Importing framer-motion
 import { ShopContext } from "../../context/ShopContext";
 import { products } from "../../products";
 
