@@ -36,7 +36,12 @@ export const Cart = () => {
       <div className="flex flex-wrap justify-center gap-6 mb-6">
         {products.map((product) => {
           if (cartItems[product.id] > 0) {
-            return <CartItem key={product.id} data={product} />;
+            return (
+              <CartItem
+                key={product.id}
+                data={{ ...product, quantity: cartItems[product.id] }}
+              />
+            );
           }
           return null;
         })}
