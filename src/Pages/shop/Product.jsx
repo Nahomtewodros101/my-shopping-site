@@ -5,12 +5,15 @@ const Product = (props) => {
   const { id, name, price, productImage } = props.data;
   const { cartItems, addToCart, removeFromCart } = useContext(ShopContext);
 
+
   const [addedToCart, setAddedToCart] = useState(false);
+  const [itemCount, setItemCount] = useState(0);
 
   const handleAddToCart = () => {
     addToCart(id);
+    setItemCount(cartItems[id] ? cartItems[id] + 1 : 1);
     setAddedToCart(true);
-    setTimeout(() => setAddedToCart(false), 2000); // Reset after 2 seconds
+    setTimeout(() => setAddedToCart(false), 2000); 
   };
 
   return (
@@ -26,7 +29,7 @@ const Product = (props) => {
         className={`bg-black text-white px-4 py-2 rounded transition-transform transform ${addedToCart ? 'bg-gray-900' : 'hover:bg-gray-500'} ${addedToCart ? 'scale-105' : ''}`}
         onClick={handleAddToCart}
       >
-        {addedToCart ? 'Added to Cart!' : 'Add to Cart'}
+        {addedToCart ? `Added to Cart! (${itemCount})` : 'Add to Cart'}
       </button>
     </div>
   );
