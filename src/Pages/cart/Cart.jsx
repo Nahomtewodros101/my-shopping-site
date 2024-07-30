@@ -1,14 +1,25 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 import { ShopContext } from "../../context/ShopContext";
 import { products } from "../../products";
-import CartItem from "./CartItem";
 
-export const Cart = () => {
-  const { cartItems } = useContext(ShopContext);
+const containerVariants = {
+  hover: {
+    scale: 1.1,
+    transition: { duration: 0.3 },
+  },
+};
+
+const descriptionVariants = {
+  hidden: { opacity: 0, y: 10 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.3 } },
+};
+
+const Cart = () => {
+  const { cartItems, addToCart, removeFromCart } = useContext(ShopContext);
   const navigate = useNavigate();
 
-  // Calculate total price
   const totalPrice = Object.keys(cartItems).reduce((total, id) => {
     const item = products.find((product) => product.id === parseInt(id));
     return total + (item ? item.price * cartItems[id] : 0);
@@ -20,11 +31,28 @@ export const Cart = () => {
     navigate("/");
   };
 
-  // Handle checkout button click
   const handleCheckout = () => {
     if (!isCartEmpty) {
-      // Proceed with checkout logic here
       alert("Proceeding to checkout...");
+    }
+  };
+
+  const handleQuantityChange = (id, newQuantity) => {
+    if (newQuantity <= 0) {
+      removeFromCart(id);
+    } else {
+      const currentQuantity = cartItems[id] || 0;
+      const quantityDifference = newQuantity - currentQuantity;
+
+      if (quantityDifference > 0) {
+        for (let i = 0; i < quantityDifference; i++) {
+          addToCart(id);
+        }
+      } else {
+        for (let i = 0; i < -quantityDifference; i++) {
+          removeFromCart(id);
+        }
+      }
     }
   };
 
@@ -35,10 +63,51 @@ export const Cart = () => {
         {products.map((product) => {
           if (cartItems[product.id] > 0) {
             return (
-              <CartItem
+              <motion.div
                 key={product.id}
-                data={{ ...product, quantity: cartItems[product.id] }}
-              />
+                className="flex flex-col items-center p-4 border rounded shadow-lg"
+                variants={containerVariants}
+                whileHover="hover"
+              >
+                <img
+                  src={product.productImage}
+                  alt={product.name}
+                  className="w-40 h-40 object-cover mb-4"
+                />
+                <h2 className="text-lg font-semibold mb-2">{product.name}</h2>
+                <p className="text-lg text-gray-600 mb-2">
+                  ${product.price.toFixed(2)}
+                </p>
+                <motion.p
+                  className="text-gray-700 mb-4"
+                  variants={descriptionVariants}
+                  initial="hidden"
+                  whileHover="visible"
+                >
+                  {product.description}
+                </motion.p>
+                <div className="flex items-center gap-4">
+                  <button
+                    onClick={() => handleQuantityChange(product.id, cartItems[product.id] - 1)}
+                    className="bg-black text-white px-2 py-1 rounded hover:bg-gray-700"
+                  >
+                    -
+                  </button>
+                  <input
+                    type="number"
+                    value={cartItems[product.id]}
+                    min="0"
+                    onChange={(e) => handleQuantityChange(product.id, parseInt(e.target.value) || 0)}
+                    className="w-16 text-center border rounded"
+                  />
+                  <button
+                    onClick={() => handleQuantityChange(product.id, cartItems[product.id] + 1)}
+                    className="bg-black text-white px-2 py-1 rounded hover:bg-gray-700"
+                  >
+                    +
+                  </button>
+                </div>
+              </motion.div>
             );
           }
           return null;

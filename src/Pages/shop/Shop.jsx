@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
-import React from "react";
+import React, { useContext } from "react";
 import { products } from "../../products";
+import { ShopContext } from '../../context/ShopContext';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -12,7 +13,18 @@ const itemVariants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
 };
 
+const buttonVariants = {
+  initial: { scale: 1 },
+  clicked: { scale: 1.2, transition: { duration: 0.2 } },
+};
+
+const hoverVariants = {
+  hover: { scale: 1.05, boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)" },
+};
+
 const Shop = () => {
+  const { addToCart, cartItems, animationState, recentlyAdded } = useContext(ShopContext);
+
   return (
     <motion.div
       className="text-center"
@@ -32,6 +44,8 @@ const Shop = () => {
             key={product.id}
             variants={itemVariants}
             className="flex flex-col items-center p-4 border rounded shadow-lg"
+            whileHover="hover"
+            variants={hoverVariants}
           >
             <img
               src={product.productImage}
@@ -43,9 +57,15 @@ const Shop = () => {
               ${product.price.toFixed(2)}
             </p>
             <p className="text-gray-700 mb-4">{product.description}</p>
-            <button className="bg-black text-white px-4 py-2 rounded hover:bg-gray-700">
-              Add to Cart
-            </button>
+            <motion.button 
+              className="bg-black text-white px-4 py-2 rounded hover:bg-gray-700"
+              onClick={() => addToCart(product.id)}
+              initial="initial"
+              animate={animationState[product.id] ? "clicked" : "initial"}
+              variants={buttonVariants}
+            >
+              {recentlyAdded[product.id] ? 'Added to Cart' : 'Add to Cart'} {cartItems[product.id] ? `(${cartItems[product.id]})` : ''}
+            </motion.button>
           </motion.div>
         ))}
       </motion.div>
