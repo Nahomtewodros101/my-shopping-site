@@ -24,8 +24,8 @@ const hoverVariants = {
 };
 
 const infoVariants = {
-  initial: { opacity: 0, height: 0, overflow: 'hidden' },
-  hover: { opacity: 1, height: 'auto', transition: { duration: 0.3 } },
+  hidden: { opacity: 0, height: 0, overflow: 'hidden' },
+  visible: { opacity: 1, height: 'auto', transition: { duration: 0.3 } },
 };
 
 const Shop = () => {
@@ -61,8 +61,8 @@ const Shop = () => {
             <h2 className="text-lg font-semibold mb-2">{product.name}</h2>
             <motion.div
               variants={infoVariants}
-              initial="initial"
-              whileHover="hover"
+              initial="hidden"
+              whileHover="visible"
               className="flex flex-col items-center"
             >
               <p className="text-lg text-gray-600 mb-2">
