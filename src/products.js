@@ -1,4 +1,6 @@
 import React from 'react';
+import CartItem from './CartItem'; 
+
 
 import prdt1 from './products/1.png';
 import prdt2 from './products/2.png';
