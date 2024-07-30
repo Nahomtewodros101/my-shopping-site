@@ -1,7 +1,7 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { products } from '../../products';
-import Product from './Product';
+import { motion } from "framer-motion";
+import React from "react";
+import { products } from "../data/products";
+import Product from "./Product";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -16,7 +16,7 @@ const itemVariants = {
 const Shop = () => {
   return (
     <motion.div
-      className='text-center'
+      className="text-center"
       initial="hidden"
       animate="visible"
       variants={containerVariants}

@@ -1,8 +1,8 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Shop from './components/Shop';
-import Cart from './components/Cart';
-import ProductDetails from './ProductDetails'; 
+import React from "react";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import Cart from "./Components/Cart";
+import ProductDetails from "./Components/ProductDetails"; // Import new component
+import Shop from "./Components/Shop";
 
 const App = () => {
   return (
@@ -10,7 +10,8 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Shop />} />
         <Route path="/cart" element={<Cart />} />
-        <Route path="/product/:id" element={<ProductDetails />} /> 
+        <Route path="/product/:id" element={<ProductDetails />} />{" "}
+        {/* New route */}
       </Routes>
     </Router>
   );

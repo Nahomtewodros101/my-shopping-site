@@ -1,8 +1,8 @@
-import React, { useContext } from 'react';
-import { ShopContext } from '../../context/ShopContext';
-import CartItem from './CartItem';
-import { products } from '../../products';
-import { useNavigate } from 'react-router-dom';
+import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { ShopContext } from "../context/ShopContext";
+import { products } from "../data/products";
+import CartItem from "../Pages/cart/CartItem";
 
 export const Cart = () => {
   const { cartItems } = useContext(ShopContext);
@@ -14,19 +14,17 @@ export const Cart = () => {
     return total + (item ? item.price * cartItems[id] : 0);
   }, 0);
 
-
   const isCartEmpty = Object.keys(cartItems).length === 0;
 
-
   const handleContinueShopping = () => {
-    navigate('/'); 
+    navigate("/");
   };
 
   // Handle checkout button click
   const handleCheckout = () => {
     if (!isCartEmpty) {
       // Proceed with checkout logic here
-      alert('Proceeding to checkout...');
+      alert("Proceeding to checkout...");
     }
   };
 
@@ -52,13 +50,17 @@ export const Cart = () => {
         <div className="flex gap-4">
           <button
             onClick={handleCheckout}
-            className={`px-4 py-2 rounded-lg transition-colors ${isCartEmpty ? 'bg-gray-300 text-gray-700 cursor-not-allowed' : 'bg-black text-white hover:bg-gray-700'}`}
+            className={`px-4 py-2 rounded-lg transition-colors ${
+              isCartEmpty
+                ? "bg-gray-300 text-gray-700 cursor-not-allowed"
+                : "bg-black text-white hover:bg-gray-700"
+            }`}
             disabled={isCartEmpty}
           >
             Proceed to Checkout
           </button>
-          <button 
-            onClick={handleContinueShopping} 
+          <button
+            onClick={handleContinueShopping}
             className="bg-black text-white px-4 py-2 rounded-lg hover:bg-gray-600 transition-colors"
           >
             Continue Shopping

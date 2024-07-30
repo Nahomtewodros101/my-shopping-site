@@ -1,13 +1,13 @@
-import React from 'react';
+import React from "react";
 
 const CartItem = ({ data }) => {
   const { id, name, price, productImage, description } = data;
 
   return (
     <div className="cart-item flex items-center bg-white border border-gray-300 rounded-lg shadow-md p-4 w-full max-w-md">
-      <img 
-        src={productImage} 
-        alt={name} 
+      <img
+        src={productImage}
+        alt={name}
         className="w-32 h-32 object-cover rounded-lg mr-4"
       />
       <div className="flex flex-col flex-grow">
