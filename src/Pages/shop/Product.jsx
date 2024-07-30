@@ -13,7 +13,7 @@ const Product = (props) => {
     addToCart(id);
     setItemCount(cartItems[id] ? cartItems[id] + 1 : 1);
     setAddedToCart(true);
-    setTimeout(() => setAddedToCart(false), 2000); 
+    setTimeout(() => setAddedToCart(false), 1500); 
   };
 
   return (
