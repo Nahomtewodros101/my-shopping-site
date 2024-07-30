@@ -15,6 +15,7 @@ export const products = [
     name: "iPhone",
     price: 999,
     productImage: prdt1,
+    description: 'This is a description of Product 2.'
   },
   {
     id: 2,
