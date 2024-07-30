@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { products } from '../../products';
 const CartItem = ({ data }) => {
   const { id, name, price, productImage, description } = data;
 
