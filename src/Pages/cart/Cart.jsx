@@ -1,24 +1,15 @@
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { motion } from "framer-motion"; // Importing framer-motion
+import { motion } from "framer-motion";
 import { ShopContext } from "../../context/ShopContext";
 import { products } from "../../products";
 
 const containerVariants = {
   hover: {
-    scale: 1.1,
+    scale: 1.05,
+    boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)",
     transition: { duration: 0.3 },
   },
-};
-
-const descriptionVariants = {
-  hidden: { opacity: 0, y: 10 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.3 } },
-};
-
-const hoverTextVariants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { duration: 0.3 } },
 };
 
 const Cart = () => {
@@ -70,7 +61,7 @@ const Cart = () => {
             return (
               <motion.div
                 key={product.id}
-                className="relative flex flex-col items-center p-4 border rounded shadow-lg"
+                className="flex flex-col items-center p-4 border rounded shadow-lg"
                 variants={containerVariants}
                 whileHover="hover"
               >
@@ -83,22 +74,7 @@ const Cart = () => {
                 <p className="text-lg text-gray-600 mb-2">
                   ${product.price.toFixed(2)}
                 </p>
-                <motion.p
-                  className="text-gray-700 mb-4"
-                  variants={descriptionVariants}
-                  initial="hidden"
-                  whileHover="visible"
-                >
-                  {product.description}
-                </motion.p>
-                <motion.span
-                  className="absolute bottom-2 text-sm text-gray-500"
-                  variants={hoverTextVariants}
-                  initial="hidden"
-                  whileHover="visible"
-                >
-                  Hover for details
-                </motion.span>
+                <p className="text-gray-700 mb-4">{product.description}</p>
                 <div className="flex items-center gap-4">
                   <button
                     onClick={() => handleQuantityChange(product.id, cartItems[product.id] - 1)}
