@@ -4,13 +4,12 @@ import { ShopContext } from '../../context/ShopContext';
 const Product = (props) => {
   const { id, name, price, productImage } = props.data;
   const { cartItems, addToCart, removeFromCart } = useContext(ShopContext);
-  
+
   const [addedToCart, setAddedToCart] = useState(false);
 
   const handleAddToCart = () => {
     addToCart(id);
     setAddedToCart(true);
-    // Optionally reset to "Add to Cart" after a delay
     setTimeout(() => setAddedToCart(false), 2000); // Reset after 2 seconds
   };
 
