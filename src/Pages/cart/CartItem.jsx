@@ -30,9 +30,10 @@ const CartItem = ({ data }) => {
         <h3 className="text-xl font-semibold mb-2">{name}</h3>
         <motion.div
           className="overflow-hidden"
-          initial="hidden"
-          whileHover="visible"
           variants={infoVariants}
+          initial="hidden"
+          animate="hidden"
+          whileHover="visible"
         >
           <p className="text-gray-600 mb-2">{description}</p>
           <p className="text-lg font-bold mb-2">${price.toFixed(2)}</p>
