@@ -7,10 +7,10 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const handleClick = (path) => {
-    // Perform animation and then navigate
+    
     setTimeout(() => {
       navigate(path);
-    }, 200); // Duration should match the animation duration
+    }, 200); 
   };
 
   return (
