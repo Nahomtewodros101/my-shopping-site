@@ -4,7 +4,7 @@ import Navbar from "./Components/Navbar";
 import Shop from "./Pages/shop/Shop";
 import Cart from "./Pages/cart/Cart";
 import { ShopContextProvider } from './context/ShopContext'; // Corrected import
-
+import Register from "./Pages/cart/Register/Register";
 const App = () => {
   return (
     <ShopContextProvider> {/* Corrected component name */}
@@ -14,6 +14,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Shop />} />
             <Route path="/cart" element={<Cart />} />
+            <Route path="/register" component={<Register/>} />
           </Routes>
         </div>
       </Router>
